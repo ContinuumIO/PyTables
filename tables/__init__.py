@@ -101,6 +101,8 @@ from tables.earray import EArray
 from tables.vlarray import VLArray
 from tables.unimplemented import UnImplemented, Unknown
 from tables.expression import Expr
+from tables.linalg import *
+
 from tables.tests import print_versions, test
 
 
