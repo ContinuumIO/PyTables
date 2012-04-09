@@ -26,7 +26,7 @@ import tables as tb
 from tables.parameters import IO_BUFFER_SIZE
 
 
-def matmul(a, b, out=None):
+def dot(a, b, out=None):
     """
     Matrix multiplication of two 2-D arrays.
 

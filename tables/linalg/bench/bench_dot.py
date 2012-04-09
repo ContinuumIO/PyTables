@@ -39,7 +39,7 @@ cd = f.createCArray(f.root, 'c', tables.Float64Atom(), (l,m),
                     filters=filters)
 
 t0 = time()
-tables.linalg.matmul(a, b, out=cd)
+tables.linalg.dot(a, b, out=cd)
 print "Time for ooc matmul->", round(time()-t0, 3)
 
 np.testing.assert_almost_equal(cd, cdot)

@@ -18,11 +18,7 @@ in-memory).
 # Revision for the package initialization code.
 __revision__ = '$Id$'
 
-from tables.linalg.matmul import matmul
-
-# The list of names to be exported to the importing module.
-__all__ = ['matmul']
-
+from tables.linalg.matmul import dot
 
 
 ## Local Variables:
