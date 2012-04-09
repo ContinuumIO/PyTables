@@ -11,6 +11,7 @@
 """
 
 import tables
+import tables.linalg
 import numpy as np
 from time import time
 
