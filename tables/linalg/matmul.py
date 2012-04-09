@@ -23,7 +23,7 @@ import sys, math
 
 import numpy as np
 import tables as tb
-from tables.parameters import IO_BUFFER_SIZE
+from tables.parameters import OOC_BUFFER_SIZE
 
 
 def dot(a, b, out=None):
@@ -78,10 +78,9 @@ def dot(a, b, out=None):
                              shape=(l, n), filters=filters)
 
     # Compute a good block size
-    buffersize = IO_BUFFER_SIZE
-    bl = math.sqrt(buffersize) / out.dtype.itemsize
-    bl = 2 * 2**int(math.log(bl, 2)) * 10
-    print "bl->", bl
+    buffersize = OOC_BUFFER_SIZE
+    bl = math.sqrt(buffersize / out.dtype.itemsize)
+    bl = 2**int(math.log(bl, 2))
     for i in range(0, l, bl):
         for j in range(0, n, bl):
             for k in range(0, m, bl):

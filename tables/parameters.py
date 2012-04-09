@@ -200,6 +200,9 @@ BUFFER_TIMES = 100
 """The maximum buffersize/rowsize ratio before issuing a
 ``PerformanceWarning``."""
 
+OOC_BUFFER_SIZE = 32*_MB
+"""The buffer size for out-of-core operations.
+"""
 
 # Miscellaneous
 # -------------
