@@ -67,25 +67,25 @@ def dot(a, b, out=None):
         raise (ValueError,
                "last dimension of `a` does not match first dimension of `b`")
 
-    l, n, m = a.shape[0], a.shape[1], b.shape[1]
+    l, m, n = a.shape[0], a.shape[1], b.shape[1]
 
     if out:
-        if out.shape != (l, m):
+        if out.shape != (l, n):
             raise (ValueError, "`out` array does not have the correct shape")
     else:
         filters = tb.Filters(complevel=5, complib='blosc')
         out = f.createCArray(f.root, 'out', tb.Atom.from_dtype(a.dtype),
-                             shape=(l, m), filters=filters)
+                             shape=(l, n), filters=filters)
 
     # Compute a good block size
     buffersize = IO_BUFFER_SIZE
     bl = math.sqrt(buffersize) / out.dtype.itemsize
     bl = 2 * 2**int(math.log(bl, 2))
     for i in range(0, l, bl):
-        for j in range(0, m, bl):
-            for k in range(0, n, bl):
-                a0 = a[i:min(i+bl, l), k:min(k+bl, n)]
-                b0 = b[k:min(k+bl, n), j:min(j+bl, m)]
+        for j in range(0, n, bl):
+            for k in range(0, m, bl):
+                a0 = a[i:min(i+bl, l), k:min(k+bl, m)]
+                b0 = b[k:min(k+bl, m), j:min(j+bl, n)]
                 out[i:i+bl, j:j+bl] += np.dot(a0, b0)
 
     return out
