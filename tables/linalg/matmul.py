@@ -60,7 +60,7 @@ def dot(a, b, out=None):
         second-to-last dimension of `b`.
     """
 
-    if a.ndim != 2 or b.ndim != 2:
+    if len(a.shape) != 2 or len(b.shape) != 2:
         raise (ValueError, "only 2-D matrices supported")
 
     if a.shape[1] != b.shape[0]:
@@ -80,7 +80,8 @@ def dot(a, b, out=None):
     # Compute a good block size
     buffersize = IO_BUFFER_SIZE
     bl = math.sqrt(buffersize) / out.dtype.itemsize
-    bl = 2 * 2**int(math.log(bl, 2))
+    bl = 2 * 2**int(math.log(bl, 2)) * 10
+    print "bl->", bl
     for i in range(0, l, bl):
         for j in range(0, n, bl):
             for k in range(0, m, bl):

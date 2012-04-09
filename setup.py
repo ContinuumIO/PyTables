@@ -561,7 +561,7 @@ else:
     setuptools_kwargs['packages'] = [
         'tables', 'tables.nodes', 'tables.scripts',
         'tables.nra', 'tables.netcdf3', 'tables.netcdf3.scripts',
-        'tables.misc',
+        'tables.misc', 'tables.linalg',
         # Test suites.
         'tables.tests', 'tables.nodes.tests',
         'tables.netcdf3.tests', 'tables.nra.tests']
